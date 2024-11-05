@@ -3,25 +3,18 @@
         "src": "inventoryproject/wsgi.py",
         "use": "@vercel/python",
         "config": {
-            "maxLambdaSize": "15mb",
-            "runtime": "python3.12.1",
-            "buildCommand": "python manage.py collectstatic --noinput"
+            "maxLambdaSize": "10mb",
+            "runtime": "python3.12.1"
         }
     }],
     "routes": [
         {
             "src": "/static/(.*)",
-            "dest": "/static/$1",
-            "headers": {
-                "cache-control": "public, max-age=31536000, immutable"
-            }
+            "dest": "/static/$1"
         },
         {
             "src": "/(.*)",
             "dest": "inventoryproject/wsgi.py"
         }
-    ],
-    "env": {
-        "DJANGO_SETTINGS_MODULE": "inventoryproject.settings"
-    }
+    ]
 }
